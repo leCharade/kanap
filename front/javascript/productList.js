@@ -4,7 +4,7 @@ fetch("http://localhost:3000/api/products/")
         for(let product in products) {
             document.getElementById("items")
             .innerHTML +=
-            `<a href=".product.html?id=${products[product].id}">
+            `<a href=".product.html?id=${products[product]._id}">
                 <article>
                     <img src="${products[product].imageUrl}" alt="${products[product].altTxt}">
                     <h3 class="ProductName">${products[product].name}</h3>
