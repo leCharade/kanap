@@ -1,9 +1,13 @@
+// Récupération de l'identifiant dans l'URL
 var url = new URL(window.location.href);
 var productId = url.searchParams.get("id");
-console.log(productId);
+
+// Récupération des données du canapé dont l'identifiant correspond à celui de l'URL
 fetch(`http://localhost:3000/api/products/${productId}`)
     .then((res) => res.json())
     .then((product) => {
+
+        // Intégration des données du canapé dans la page
         var elements = document.getElementsByClassName('item__img');
         elements[0].innerHTML = `<img src="${product.imageUrl}" alt="${product.altTxt}">`;
         document.getElementById("title")
