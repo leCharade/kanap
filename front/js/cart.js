@@ -66,8 +66,11 @@ function showCart() {
                     </div>
                 </article>`;
 
-                const changeQuantity = document.getElementsByClassName('changeQuantity');
-                changeQuantity[i].onChange = items[i][2];
+                // let newQuantity = document.getElementsByClassName('changeQuantity');
+                // newQuantity[i].addEventListener('change',quantity = this.value);
+
+                // const changeQuantity = document.getElementsByClassName('changeQuantity');
+                // changeQuantity[i].onChange = items[i][2];
 
                 // const changeQuantity = document.getElementByClassName("changeQuantity");
                 // changeQuantity[items[i][0]].onChange = changeQuantity(items[i][0];items[i][1];items[i][2]) {
@@ -81,8 +84,6 @@ function showCart() {
 
                 totalQuantity += quantity;
                 totalPrice += product.price * quantity;
-                console.log(totalQuantity);
-                console.log(totalPrice);
                 if (i = items.length) {
                     document.getElementById("totalQuantity")
                     .innerHTML = totalQuantity;
