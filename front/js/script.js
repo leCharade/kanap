@@ -2,7 +2,7 @@
 fetch("http://localhost:3000/api/products/")
     .then((res) => res.json())
     .then((products) => {
-        
+
         // Intégration des éléments dans le bloc Items
         for(let product in products) {
             document.getElementById("items")

@@ -4,37 +4,16 @@ function fetchCart () {
     if (localStorage.getItem("cart") != null) {
         items = JSON.parse(localStorage.getItem("cart"));
     }
+    console.log(items);
     return items;
 }
-
-// function changeQuantity(id, color, quantity) {
-//     let items = fetchCart();
-//     for (let i = 0; i < items.length; i++) {
-//       if (id === items[i][0] && color === items[i][1]) {
-//         items[i][2] = this.value;
-//       }
-//       localStorage.setItem("cart", JSON.stringify(items));
-//       window.location.reload();
-//     }
-// }
-
-// function deleteItem(id, color) {
-//     let items = fetchCart();
-//     for (i = 0; i < items.length; i++) {
-//       if (id === items[i][0] && color === items[i][1]) {
-//         items.splice(i, 1);
-//         localStorage.setItem("cart", JSON.stringify(items));
-//         window.location.reload();
-//       }
-//     }
-// }
 
 let items = fetchCart();
 
 let totalQuantity = 0;
 let totalPrice = 0;
 
-function showCart() {
+async function showCart() {
     if (localStorage.getItem("cart") != null) {
         for (let i = 0; i < items.length; i++) {
             let id = items[i][0];
@@ -44,7 +23,7 @@ function showCart() {
                 .then((res) => res.json())
                 .then((product) => {
                     document.getElementById("cart__items")
-                    .innerHTML += `<article class="cart__item" data-id="${product.id}" data-color="${color}">
+                    .innerHTML += `<article class="cart__item" data-id="${product._id}" data-color="${color}">
                     <div class="cart__item__img">
                     <img src="${product.imageUrl}" alt="${product.altTxt}">
                     </div>
@@ -66,22 +45,6 @@ function showCart() {
                     </div>
                 </article>`;
 
-                // let newQuantity = document.getElementsByClassName('changeQuantity');
-                // newQuantity[i].addEventListener('change',quantity = this.value);
-
-                // const changeQuantity = document.getElementsByClassName('changeQuantity');
-                // changeQuantity[i].onChange = items[i][2];
-
-                // const changeQuantity = document.getElementByClassName("changeQuantity");
-                // changeQuantity[items[i][0]].onChange = changeQuantity(items[i][0];items[i][1];items[i][2]) {
-
-                // }
-
-                // const deleteItem = document.getElementByClassName("deleteItem");
-                // deleteItem[items[i][0]].onClick = deleteItem(items[i][0];items[i][1]) {
-
-                // }
-
                 totalQuantity += quantity;
                 totalPrice += product.price * quantity;
                 if (i = items.length) {
@@ -94,5 +57,43 @@ function showCart() {
             )
         }
     }
+    let deleteItemButtons = document.getElementsByClassName('deleteItem');
+    console.log(deleteItemButtons);
+    console.log(deleteItemButtons[0]);
+
+
+    for (let deleteItemButton of deleteItemButtons) {
+        console.log(deleteItemButton);
+        deleteItemButton.addEventListener('click', function(event) {
+            console.log('Deleted!');
+        });
+
+    // deleteItemButtons[0].addEventListener('click', function (event) {
+    // console.log('Deleted!');
+    // });
+    }
 }
 showCart();
+
+
+
+// async function deleteItem() {
+//     await showCart;
+//     let deleteItemButtons = document.getElementsByClassName('.deleteItem');
+//     console.log(deleteItemButtons);
+//     console.log(deleteItemButtons[0]);
+
+//     deleteItemButtons.addEventListener('click', function (event) {
+//     console.log('Deleted!');
+//     });
+// }
+// deleteItem();
+//     let deleteItemButtons = document.getElementsByClassName('.deleteItem');
+//     console.log(deleteItemButtons);
+//     console.log(deleteItemButtons[0]);
+// for (let deleteItemButton of deleteItemButtons) {
+//     console.log(deleteItemButton);
+//     deleteItemButton.addEventListener('click', function deleteItem() {
+//         console.log('Deleted!');
+//     });
+// }
