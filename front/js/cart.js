@@ -66,7 +66,7 @@ function modifyEvents()
             let modifiedName = modifiedItem.dataset.name;
             items.find(function (item) {
                     if ( item[0] == modifiedId && item[1] == modifiedColor ) {
-                        item[2] = modifyItemValue.value;
+                        item[2] = parseInt(modifyItemValue.value);
                     }
                 });
             localStorage.setItem("cart", JSON.stringify(items));
@@ -145,7 +145,7 @@ function validateMail(email) {
     }
 }
 function makeJsonOrder() {
-    let contactInfo = {
+    let contact = {
         firstName: firstName.value,
         lastName: lastName.value,
         address: address.value,
@@ -158,7 +158,7 @@ function makeJsonOrder() {
     for (i = 0; i < items.length; i++) {
         products.push(items[i][0]);
     }
-    let jsonData = JSON.stringify({ contactInfo, products});
+    let jsonData = JSON.stringify({ contact, products});
     return jsonData;
 }
 
@@ -185,17 +185,19 @@ orderButton.addEventListener('click', function (event) {
             return;
         }
         let jsonOrder = makeJsonOrder();
+        console.log(jsonOrder);
+        alert('!');
         fetch('http://localhost:3000/api/products/order/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
             },
             body: jsonOrder,
         })
         .then((res) => res.json())
         .then((data) => {
             localStorage.clear();
-            alert('On y est tkt!');
             window.location.href = `confirmation.html?id=${data.orderId}`;
         })
         .catch(() => {
