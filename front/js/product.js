@@ -50,7 +50,7 @@ function addToCart(productId, color, quantity) {
 
     // Si pas de couleur ou de quantité renseignée, pas d'ajout au panier
     if (quantity <= 0 || color == "") {
-      if (quantity <= 0 || color == "") {
+      if (quantity <= 0 && color == "") {
         alert('Vous devez renseigner une quantité et une couleur !');
       }
       else {
@@ -61,6 +61,7 @@ function addToCart(productId, color, quantity) {
             alert('Vous devez renseigner une couleur !');
         }
       }
+      
       return;
     }
     else {
