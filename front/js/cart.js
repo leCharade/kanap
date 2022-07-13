@@ -6,7 +6,6 @@ function fetchCart () {
     if (localStorage.getItem("cart") != null) {
         items = JSON.parse(localStorage.getItem("cart"));
     }
-    console.log(items);
     return items;
 }
 let items = fetchCart();
@@ -56,9 +55,7 @@ async function showCart() {
 function modifyEvents()
 {
     const modifyItemValues = document.getElementsByClassName('itemQuantity');
-    console.log(modifyItemValues);
     for (let modifyItemValue of modifyItemValues) {
-        console.log(modifyItemValue);
         modifyItemValue.addEventListener('change', function(event) {
             let modifiedItem = event.target.closest('article');
             let modifiedId = modifiedItem.dataset.id;
@@ -79,9 +76,7 @@ function modifyEvents()
 function deleteEvents()
 {
     const deleteItemButtons = document.getElementsByClassName('deleteItem');
-    console.log(deleteItemButtons);
     for (let deleteItemButton of deleteItemButtons) {
-        console.log(deleteItemButton);
         deleteItemButton.addEventListener('click', function(event) {
             let deletedItem = event.target.closest('article');
             let deletedId = deletedItem.dataset.id;
@@ -113,7 +108,7 @@ const email = document.getElementById('email');
 const regexNames = /[A-Za-zÀ-Ùà-ù '-.,]{1,31}$|^$/i;
 const regexMail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 function validateFirstName(firstName) {
-    if (regexNames.test(firstName) == true) {
+    if (regexNames.test(firstName)) {
         document.getElementById('firstNameErrorMsg').innerHTML = null;
         return true;
     } else {
@@ -121,7 +116,7 @@ function validateFirstName(firstName) {
     }
 }
 function validateLastName(lastName) {
-    if (regexNames.test(lastName) == true) {
+    if (regexNames.test(lastName)) {
         document.getElementById('lastNameErrorMsg').innerHTML = null;
         return true;
     } else {
@@ -129,7 +124,7 @@ function validateLastName(lastName) {
     }
 }
 function validateCity(city) {
-    if (regexNames.test(city) == true) {
+    if (regexNames.test(city)) {
         document.getElementById('cityErrorMsg').innerHTML = null;
         return true;
     } else {
@@ -137,7 +132,7 @@ function validateCity(city) {
     }
 }
 function validateMail(email) {
-    if (regexMail.test(email) == true) {
+    if (regexMail.test(email)) {
         document.getElementById('emailErrorMsg').innerHTML = null;
         return true;
     } else {
@@ -185,8 +180,6 @@ orderButton.addEventListener('click', function (event) {
             return;
         }
         let jsonOrder = makeJsonOrder();
-        console.log(jsonOrder);
-        alert('!');
         fetch('http://localhost:3000/api/products/order/', {
             method: 'POST',
             headers: {
