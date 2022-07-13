@@ -63,6 +63,9 @@ function addToCart(productId, color, quantity) {
       }
       return;
     }
+    else {
+        alert("L'article a été ajouté au panier !")
+    }
 
     // Si le panier est vide, on ajoute le produit avec la couleur et la quantité renseignée
     let items = getCart();
@@ -99,5 +102,4 @@ addToCartBtn.addEventListener("click", () => {
     let quantity = parseInt(quantityValue());
     let color = colorValue();
     addToCart(productId, color, quantity);
-    alert("L'article a été ajouté au panier !");
 });
