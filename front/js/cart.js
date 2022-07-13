@@ -14,10 +14,10 @@ async function showCart() {
     let totalQuantity = 0;
     let totalPrice = 0;
 
-    for (let i = 0; i < items.length; i++) {
-        let id = items[i][0];
-        let color = items[i][1];
-        let quantity = items[i][2];    
+    for (let i of items) {
+        let id = i[0];
+        let color = i[1];
+        let quantity = i[2];    
         const promise = await fetch(`http://localhost:3000/api/products/${id}`);
         const product = await promise.json();   
         

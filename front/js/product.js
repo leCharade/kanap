@@ -50,6 +50,17 @@ function addToCart(productId, color, quantity) {
 
     // Si pas de couleur ou de quantité renseignée, pas d'ajout au panier
     if (quantity <= 0 || color == "") {
+      if (quantity <= 0 || color == "") {
+        alert('Vous devez renseigner une quantité et une couleur !');
+      }
+      else {
+        if (quantity <= 0) {
+            alert('Vous devez renseigner une quantité !');
+        }
+        if (color == "") {
+            alert('Vous devez renseigner une couleur !');
+        }
+      }
       return;
     }
 
@@ -88,4 +99,5 @@ addToCartBtn.addEventListener("click", () => {
     let quantity = parseInt(quantityValue());
     let color = colorValue();
     addToCart(productId, color, quantity);
+    alert("L'article a été ajouté au panier !");
 });
