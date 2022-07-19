@@ -138,7 +138,7 @@ const city = document.getElementById('city');
 const email = document.getElementById('email');
 
 // Une regex pour le nom, prénom, et nom de ville ; une autre pour l'adresse mail (aucune pour l'adresse postale, de par la possible complexité naturelle de celles-ci)
-const regexNames = /[A-Za-zÀ-Ùà-ù '-.,]{1,31}$|^$/i;
+const regexNames = /[A-Za-zÀ-Ùà-ù '-.,]{1,31}$/i;
 const regexMail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // On teste chaque champ avec la regex correspondante. Si le champ renseigné est conforme, on supprime l'éventuel message d'erreur présent.
@@ -206,7 +206,6 @@ orderButton.addEventListener('click', function (event) {
         let orderLastName = validateLastName(lastName.value);
         let orderCity = validateCity(city.value);
         let orderMail = validateMail(email.value);
-        let orderAddress = address.value;
 
         // Si une seule des données est fausse, on affiche le message d'erreur correspondant et on interrompt la commande
         if ( orderFirstName == false || orderLastName == false || orderCity == false || orderMail == false || orderAddress == null ) {
@@ -221,11 +220,6 @@ orderButton.addEventListener('click', function (event) {
             }
             if (orderMail == false) {
                 emailErrorMsg.innerText = "Entrez une adresse mail valide (au format exemple@kanap.com)."
-            }
-            if (orderAddress == null) {
-                addressErrorMsg.innerText = "Entrez une adresse postale."
-            } else {
-                addressErrorMsg.innerText = null;
             }
             return;
         }
